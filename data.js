@@ -60,7 +60,7 @@ const AMERICA_DATA = {
         { num: 6, nome: "Ryan Abreu", pos: "Lateral Direito", idade: 24, nac: "Brasil", foto: "img/atletas/ryan.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
         { num: 15, nome: "Wellington", pos: "Lateral Direito", idade: 0, nac: "Brasil", foto: "img/atletas/wellington.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
         { num: 12, nome: "Hiago", pos: "Meio Campo", idade: 0, nac: "Brasil", foto: "img/atletas/hiago.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
-        { num: 7, nome: "Valdir Jr", pos: "Meio Campo", idade: 25, nac: "Brasil", foto: "img/atletas/valdir.jpg", jogos: 0, minutos: "", bio: "", destaque: "" },
+        { num: 7, nome: "Valdir Jr", pos: "Meio Campo", idade: 25, nac: "Brasil", foto: "img/atletas/valdir.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
         { num: 8, nome: "Raul Rocha", pos: "Meio Campo", idade: 0, nac: "Brasil", foto: "img/atletas/raul.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
         { num: 5, nome: "Renan Henrique", pos: "Volante", idade: 17, nac: "Brasil", foto: "img/atletas/renan.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
         { num: 10, nome: "Weverton", pos: "Meio Campo", idade: 0, nac: "Brasil", foto: "img/atletas/weverton.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },

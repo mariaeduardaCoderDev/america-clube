@@ -1180,7 +1180,7 @@ function showToast(mensagem) {
 }
 
 // Mostra a mensagem e abre o link externo após alguns segundos
-function openExternalLink(event, url, mensagem, delayMs = 2500) {
+function openExternalLink(event, url, mensagem, delayMs = 4500) {
   event.preventDefault();
   showToast(mensagem);
   // Abre a aba já no clique (evita bloqueio de pop-up) e redireciona depois do atraso

@@ -942,7 +942,7 @@ function renderNegocios() {
                                     </p>
                                     <div class="bg-america-900 text-white p-5 rounded-2xl space-y-2 text-xs">
                                         <p class="font-bold text-emerald-400 uppercase tracking-wider">Atendimento Corporativo Direto</p>
-                                        <p><i class="fa-solid fa-envelope mr-2 text-emerald-400"></i>comercial@americaclube.com.br</p>
+                                        <p><i class="fa-solid fa-envelope mr-2 text-emerald-400"></i>comercial@americaclube.com</p>
                                         <p><i class="fa-solid fa-phone mr-2 text-emerald-400"></i>+55 (11) 3924-1950</p>
                                     </div>
                                 </div>
@@ -1009,7 +1009,7 @@ function renderContatos() {
                                 <span class="text-xs font-bold uppercase text-america-700">Comunicação</span>
                                 <h3 class="font-display text-lg font-extrabold text-america-900 mt-1 mb-3">Assessoria de Imprensa</h3>
                                 <p class="text-xs text-slate-600 mb-3">Credenciamento de jogos, entrevistas e solicitações de mídia.</p>
-                                <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>imprensa@americaclube.com.br</p>
+                                <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>imprensa@americaclube.com</p>
                                 <p class="text-xs font-bold text-america-800 mt-1"><i class="fa-solid fa-phone mr-1.5 text-america-700"></i>(11) 3924-1930</p>
                             </div>
 
@@ -1017,7 +1017,7 @@ function renderContatos() {
                                 <span class="text-xs font-bold uppercase text-america-700">Integridade & Ética</span>
                                 <h3 class="font-display text-lg font-extrabold text-america-900 mt-1 mb-3">Ouvidoria Institucional</h3>
                                 <p class="text-xs text-slate-600 mb-3">Canal confidencial para sugestões, elogios e relatos éticos.</p>
-                                <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>ouvidoria@americaclube.com.br</p>
+                                <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>ouvidoria@americaclube.com</p>
                                 <p class="text-xs font-bold text-america-800 mt-1"><i class="fa-solid fa-shield-halved mr-1.5 text-america-700"></i>Sigilo Garantido</p>
                             </div>
 
@@ -1025,7 +1025,7 @@ function renderContatos() {
                                 <span class="text-xs font-bold uppercase text-america-700">Comercial & Parcerias</span>
                             <h3 class="font-display text-lg font-extrabold text-america-900 mt-1 mb-3">Negócios & Patrocínios</h3>
                             <p class="text-xs text-slate-600 mb-3">Canal exclusivo para empresas e empreendedores interessados em apoiar o América Clube, desenvolver parcerias e investir no crescimento do clube.</p>
-                            <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>comercial@americaclube.com.br</p>
+                            <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>comercial@americaclube.com</p>
                             <p class="text-xs font-bold text-america-800 mt-1"><i class="fa-solid fa-handshake mr-1.5 text-america-700"></i>Seja um parceiro do clube</p>
 </div>
                         </div>

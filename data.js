@@ -65,7 +65,7 @@ const AMERICA_DATA = {
         { num: 5, nome: "Renan Henrique", pos: "Volante", idade: 17, nac: "Brasil", foto: "img/atletas/renan.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
         { num: 10, nome: "Weverton", pos: "Meio Campo", idade: 0, nac: "Brasil", foto: "img/atletas/weverton.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
         { num: 9, nome: "Luis Henrique", pos: "Atacante", idade: 0, nac: "Brasil", foto: "img/atletas/luis.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
-        { num: 15, nome: "Victor Henrique", pos: "Atacante", idade: 0, nac: "Brasil", foto: "img/atletas/victor.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
+        { num: 15, nome: "Victor Henrique", pos: "Atacante", idade: 17, nac: "Brasil", foto: "img/atletas/victor.jpeg", jogos: 0, minutos: "", bio: "", destaque: "" },
       ],
     },
   },

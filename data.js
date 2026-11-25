@@ -260,9 +260,33 @@ const AMERICA_DATA = {
       imagemIcone: "fa-futbol",
       imagem: "img/clube/escudo-america.jpeg",
       conteudo: `
-        <p class="mb-4">No dia 23 de novembro de 2026, o América Clube foi oficialmente fundado. A criação da equipe aconteceu após diversas conversas para definir cada detalhe minuciosamente, dando o pontapé inicial em um projeto feito com dedicação e paixão pelo futebol amador.</p>
-        <p class="mb-4">Com os pés no chão e muita vontade de vencer dentro de campo, o clube inicia sua trajetória em busca da glória, pronto para encarar os desafios e construir uma identidade forte.</p>
-        <p>O América Clube convida você, que acompanha este momento desde o início, a fazer parte dessa história e torcer junto ao time em cada passo dessa caminhada.</p>
+        <h2 class="text-2xl font-bold mb-4">
+    América Clube é oficialmente fundado e dá início a um novo capítulo no futebol
+</h2>
+
+<p class="mb-4">
+    O dia 23 de novembro de 2026 entra para a história como a data oficial de fundação do América Clube. Fruto de conversas, planejamento e dedicação, o clube nasce com o propósito de construir uma trajetória sólida, pautada pela paixão pelo futebol, pelo compromisso coletivo e pela vontade de alcançar grandes objetivos.
+</p>
+
+<p class="mb-4">
+    A criação do América Clube representa o primeiro passo de um projeto que vai além das quatro linhas. Com os pés no chão, ambição e determinação, a equipe inicia sua caminhada preparada para enfrentar os desafios que surgirem, desenvolver sua identidade e escrever os primeiros capítulos de sua história.
+</p>
+
+<p class="mb-4">
+    Mais do que formar um time, o objetivo é construir um clube. Uma instituição que represente seus integrantes dentro e fora de campo, valorize o espírito de equipe e tenha como princípios o respeito, a dedicação e a busca constante por evolução.
+</p>
+
+<p class="mb-4">
+    Agora, começa uma nova jornada. O América Clube convida torcedores, apoiadores e todos aqueles que acreditam neste projeto a fazer parte dessa história desde o primeiro capítulo.
+</p>
+
+<p class="font-bold">
+    Uma história começa hoje. Um novo escudo, uma nova identidade e um só objetivo: fazer história.
+</p>
+
+<p class="font-bold text-lg mt-4">
+    SEJA BEM-VINDO, AMÉRICA CLUBE!
+</p>
       `,
     },
   ],

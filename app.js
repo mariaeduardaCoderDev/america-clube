@@ -1178,3 +1178,19 @@ function showToast(mensagem) {
     setTimeout(() => toast.remove(), 300);
   }, 3500);
 }
+
+// Mostra a mensagem e abre o link externo após alguns segundos
+function openExternalLink(event, url, mensagem, delayMs = 2500) {
+  event.preventDefault();
+  showToast(mensagem);
+  // Abre a aba já no clique (evita bloqueio de pop-up) e redireciona depois do atraso
+  const novaAba = window.open("about:blank", "_blank");
+  setTimeout(() => {
+    if (novaAba) {
+      novaAba.opener = null;
+      novaAba.location.href = url;
+    } else {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+  }, delayMs);
+}

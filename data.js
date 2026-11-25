@@ -291,7 +291,7 @@ const AMERICA_DATA = {
       </p>
 
       <p class="mb-5">
-        Ao lado da presidente, a gestão conta com a participação de Raul, Valdir Jr. e Luis Henrique, que integram a equipe de gestores da instituição. O grupo estará envolvido no acompanhamento e na organização das atividades do clube, contribuindo para o desenvolvimento das ações administrativas e para a construção de uma estrutura capaz de atender aos objetivos estabelecidos.
+        Ao lado da presidente, a gestão conta com a participação de Raul, Valdir, Luis Henrique e Wellington, que integram a equipe de gestores da instituição. O grupo estará envolvido no acompanhamento e na organização das atividades do clube, contribuindo para o desenvolvimento das ações administrativas e para a construção de uma estrutura capaz de atender aos objetivos estabelecidos.
       </p>
 
       <p class="mb-5">

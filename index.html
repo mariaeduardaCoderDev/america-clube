@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>América Clube | Portal Oficial</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Oswald (Esportivo), Montserrat (Títulos Corporativos) e Inter (Leitura) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&family=Oswald:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              america: {
+                950: "#002412", // Verde profundo abissal
+                900: "#003D1F", // Verde escuro oficial
+                800: "#00522A", // Verde floresta
+                700: "#006B38", // Verde esmeralda oficial
+                600: "#008546", // Verde vibrante
+                500: "#10A35B", // Verde destaque
+                100: "#E6F4ED", // Verde suave para fundos
+              },
+              gelo: "#F8FAF9",
+              gold: {
+                400: "#FBBF24",
+                500: "#D4AF37",
+                600: "#B48E22",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Montserrat", "sans-serif"],
+              sport: ["Oswald", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+        <link rel="stylesheet" href="style.css" />
+
+  </head>
+  <body
+    class="bg-gelo text-slate-800 font-sans antialiased selection:bg-america-700 selection:text-white flex flex-col min-h-screen"
+  >
+    <!-- ==================== BARRA SUPERIOR INSTITUCIONAL ==================== -->
+    <div
+      class="bg-america-950 text-slate-300 text-xs border-b border-america-800/80 hidden lg:block"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between"
+      >
+          <button
+            onclick="navigateTo('negocios')"
+            class="hover:text-white transition"
+          >
+            Negócios & Patrocínios
+          </button>
+          <div
+            class="flex items-center space-x-3 pl-3 border-l border-america-800"
+          >
+            <button
+              onclick="
+                showToast('Abrindo perfil oficial @americaclube no Instagram')
+              "
+              class="hover:text-emerald-400 transition"
+              aria-label="Instagram"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </button>
+            <button
+              onclick="showToast('Abrindo canal oficial América TV no YouTube')"
+              class="hover:text-emerald-400 transition"
+              aria-label="YouTube"
+            >
+              <i class="fa-brands fa-youtube"></i>
+            </button>
+            <button
+              onclick="showToast('Abrindo perfil oficial @americaclube no X')"
+              class="hover:text-emerald-400 transition"
+              aria-label="X"
+            >
+              <i class="fa-brands fa-x-twitter"></i>
+            </button>
+            <button
+              onclick="showToast('Abrindo página corporativa no LinkedIn')"
+              class="hover:text-emerald-400 transition"
+              aria-label="LinkedIn"
+            >
+              <i class="fa-brands fa-linkedin-in"></i>
+            </button>
+          </div>
+      </div>
+    </div>
+
+    <!-- ==================== CABEÇALHO PRINCIPAL FIXO ==================== -->
+    <header
+      class="sticky top-0 z-40 bg-america-900/95 backdrop-blur-md text-white shadow-xl border-b border-america-700/60"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <!-- Escudo Vetorial Oficial + Nome -->
+          <button
+            onclick="navigateTo('home')"
+            class="flex items-center gap-3.5 text-left group focus:outline-none"
+          >
+            <div
+              class="w-14 h-14 flex-shrink-0 transform group-hover:scale-105 transition duration-300"
+              id="header-crest-container"
+            ></div>
+            <div>
+              <span
+                class="block font-sport text-xl sm:text-2xl font-bold tracking-wider uppercase leading-none text-white"
+                >América Clube</span
+              >
+              <span
+                class="block font-display text-[11px] sm:text-xs font-bold tracking-[0.22em] uppercase text-emerald-400 mt-1"
+                >Tradição & Excelência</span
+              >
+            </div>
+          </button>
+
+          <!-- Navegação Desktop -->
+          <nav
+            class="hidden xl:flex items-center space-x-1 text-sm font-semibold tracking-wide"
+          >
+            <button
+              onclick="navigateTo('home')"
+              data-nav="home"
+              class="nav-btn px-3 py-2 rounded-t transition text-slate-200 hover:text-white"
+            >
+              Home
+            </button>
+            <button
+              onclick="navigateTo('historia')"
+              data-nav="historia"
+              class="nav-btn px-3 py-2 rounded-t transition text-slate-200 hover:text-white"
+            >
+              História
+            </button>
+            <button
+              onclick="navigateTo('gestao')"
+              data-nav="gestao"
+              class="nav-btn px-3 py-2 rounded-t transition text-slate-200 hover:text-white"
+            >
+              Gestão
+            </button>
+            <button
+              onclick="navigateTo('modalidades')"
+              data-nav="modalidades"
+              class="nav-btn px-3 py-2 rounded-t transition text-slate-200 hover:text-white"
+            >
+              Modalidades & Elencos
+            </button>
+            <button
+              onclick="navigateTo('noticias')"
+              data-nav="noticias"
+              class="nav-btn px-3 py-2 rounded-t transition text-slate-200 hover:text-white"
+            >
+              Notícias
+            </button>
+            <button
+              onclick="navigateTo('negocios')"
+              data-nav="negocios"
+              class="nav-btn px-3 py-2 rounded-t transition text-slate-200 hover:text-white"
+            >
+              Negócios
+            </button>
+            <button
+              onclick="navigateTo('contatos')"
+              data-nav="contatos"
+              class="nav-btn px-3 py-2 rounded-t transition text-slate-200 hover:text-white"
+            >
+              Contatos
+            </button>
+          </nav>
+
+      <!-- Menu Dropdown Mobile -->
+      <div
+        id="mobile-menu"
+        class="hidden xl:hidden bg-america-950 border-t border-america-800 px-4 pt-3 pb-6 space-y-1.5"
+      >
+        <button
+          onclick="navigateTo('home')"
+          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+        >
+          Home
+        </button>
+        <button
+          onclick="navigateTo('historia')"
+          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+        >
+          História & Conquistas
+        </button>
+        <button
+          onclick="navigateTo('gestao')"
+          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+        >
+          Gestão & Diretoria
+        </button>
+        <button
+          onclick="navigateTo('modalidades')"
+          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+        >
+          Modalidades & Elencos
+        </button>
+        
+        <button
+          onclick="navigateTo('noticias')"
+          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+        >
+          Notícias & Sala de Imprensa
+        </button>
+     
+        <button
+          onclick="navigateTo('negocios')"
+          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+        >
+          Negócios & Patrocinadores
+        </button>
+        <button
+          onclick="navigateTo('contatos')"
+          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+        >
+          Contatos & Ouvidoria
+        </button>
+      </div>
+    </header>
+
+    <!-- ==================== CONTEÚDO DINÂMICO (VIEWS SPA) ==================== -->
+    <main id="app-content" class="flex-grow">
+      <!-- Renderizado dinamicamente via JavaScript -->
+    </main>
+
+    <!-- ==================== FAIXA DE PATROCINADORES OFICIAIS ==================== -->
+    <section class="bg-white border-t border-slate-200 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8">
+          <span
+            class="text-xs font-bold uppercase tracking-[0.25em] text-america-700"
+            >Parceiros Estratégicos</span
+          >
+          <h3
+            class="font-display text-xl sm:text-2xl font-extrabold text-america-900 mt-1"
+          >
+            Patrocinadores & Fornecedores Oficiais
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div
+            class="md:col-span-3 max-w-lg mx-auto w-full bg-america-900 text-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-md border border-america-700"
+          >
+            <span
+              class="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-400 mb-2"
+              >Patrocinador Master</span
+            >
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-building-columns text-3xl text-white"></i>
+              <span
+                class="font-display font-black text-2xl sm:text-3xl tracking-tight"
+                > COTA MASTER <span class="text-emerald-400">DISPONÍVEL</span></span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div
+            class="bg-gelo border border-slate-200 rounded-xl p-5 flex flex-col items-center justify-center gap-1.5 hover:border-america-700 transition"
+          >
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest text-slate-400"
+              >Material Esportivo</span
+            >
+            <div class="flex items-center gap-2 text-america-900">
+              <i class="fa-solid fa-check-double text-xl text-america-700"></i>
+              <span class="font-sport font-bold text-xl tracking-wider"
+                >COTA DISPONÍVEL</span
+              >
+            </div>
+          </div>
+          <div
+            class="bg-gelo border border-slate-200 rounded-xl p-5 flex flex-col items-center justify-center gap-1.5 hover:border-america-700 transition"
+          >
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest text-slate-400"
+              >Patrocinador Ouro</span
+            >
+            <div class="flex items-center gap-2 text-america-900">
+              <i class="fa-solid fa-heart-pulse text-xl text-america-700"></i>
+              <span class="font-display font-extrabold text-base"
+                >COTA DISPONÍVEL</span
+              >
+            </div>
+          </div>
+          <div
+            class="bg-gelo border border-slate-200 rounded-xl p-5 flex flex-col items-center justify-center gap-1.5 hover:border-america-700 transition"
+          >
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest text-slate-400"
+              >Patrocinador Ouro</span
+            >
+            <div class="flex items-center gap-2 text-america-900">
+              <i class="fa-solid fa-bolt text-xl text-america-700"></i>
+              <span class="font-display font-extrabold text-base"
+                >COTA DISPONÍVEL</span
+              >
+            </div>
+          </div>
+          <div
+            class="bg-gelo border border-slate-200 rounded-xl p-5 flex flex-col items-center justify-center gap-1.5 hover:border-america-700 transition"
+          >
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest text-slate-400"
+              >Transporte Oficial</span
+            >
+            <div class="flex items-center gap-2 text-america-900">
+              <i class="fa-solid fa-plane-up text-xl text-america-700"></i>
+              <span class="font-display font-extrabold text-base"
+                >COTA DISPONÍVEL</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== RODAPÉ INSTITUCIONAL ==================== -->
+    <footer class="bg-america-950 text-slate-300 border-t border-america-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-11 h-11" id="footer-crest-container"></div>
+              <div>
+                <span
+                  class="block font-sport text-lg font-bold uppercase text-white leading-none"
+                  >América Clube</span
+                >
+                <span
+                  class="block font-display text-xs font-bold tracking-widest uppercase text-emerald-400"
+                  >Fundado em 2026</span
+                >
+              </div>
+            </div>
+            <p class="text-sm text-slate-400 leading-relaxed mb-5">
+              Início em busca de glórias, formação de atletas de alto rendimento
+              e compromisso absoluto com a transparência e a modernidade
+              esportiva.
+            </p>
+          </div>
+
+          <div>
+            <h4
+              class="font-display font-bold text-white uppercase tracking-wider text-sm mb-4"
+            >
+              Institucional
+            </h4>
+            <ul class="space-y-2.5 text-sm">
+              <li>
+                <button
+                  onclick="navigateTo('historia')"
+                  class="hover:text-emerald-400 transition"
+                >
+                  História & Sala de Troféus
+                </button>
+              </li>
+              <li>
+                <button
+                  onclick="navigateTo('modalidades')"
+                  class="hover:text-emerald-400 transition"
+                >
+                  Modalidades & Elencos
+                </button>
+              </li>
+              <li>
+                <button
+                  onclick="navigateTo('noticias')"
+                  class="hover:text-emerald-400 transition"
+                >
+                  Notícias & Sala de Imprensa
+                </button>
+              </li>
+              <li>
+                <button
+                  onclick="navigateTo('contatos')"
+                  class="hover:text-emerald-400 transition"
+                >
+                  Contatos & Ouvidoria
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4
+              class="font-display font-bold text-white uppercase tracking-wider text-sm mb-4"
+            >
+              Governança & Negócios
+            </h4>
+            <ul class="space-y-2.5 text-sm">
+              <li>
+                <button
+                  onclick="navigateTo('gestao')"
+                  class="hover:text-emerald-400 transition"
+                >
+                  Gestão & Diretoria
+                </button>
+              </li>
+              <li>
+                <button
+                  onclick="navigateTo('negocios')"
+                  class="hover:text-emerald-400 transition"
+                >
+                  Propriedades de Patrocínio
+                </button>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div
+          class="border-t border-america-800/80 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4"
+        >
+          <p>
+            © 2026 América Clube (AC). Todos os direitos reservados. Gestão
+            Profissional & Conformidade.
+          </p>
+          <div class="flex items-center gap-5">
+            <button
+              onclick="
+                showToast('Política de Privacidade e LGPD exibida com sucesso.')
+              "
+              class="hover:text-slate-300"
+            >
+              Privacidade & LGPD
+            </button>
+            <button
+              onclick="
+                showToast('Código de Ética e Integridade exibido com sucesso.')
+              "
+              class="hover:text-slate-300"
+            >
+              Código de Ética
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================== MODAL UNIVERSAL (ATLETAS / NOTÍCIAS / ADESÃO SÓCIO) ==================== -->
+    <div
+      id="universal-modal"
+      class="fixed inset-0 z-50 hidden bg-america-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
+    >
+      <div
+        class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden my-8 fade-in"
+      >
+        <div
+          class="bg-america-900 px-6 py-4 flex items-center justify-between text-white border-b border-america-700"
+        >
+          <span
+            id="modal-tag"
+            class="text-xs font-bold uppercase tracking-widest text-emerald-400"
+            >América Clube</span
+          >
+          <button
+            onclick="closeModal()"
+            class="text-slate-300 hover:text-white p-1.5 rounded-lg hover:bg-america-800 transition"
+            aria-label="Fechar janela"
+          >
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <div id="modal-body" class="p-6 sm:p-8 max-h-[80vh] overflow-y-auto">
+          <!-- Conteúdo dinâmico -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== NOTIFICAÇÃO TOAST ==================== -->
+    <div
+      id="toast-container"
+      class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"
+    ></div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,54 @@
+::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #002412;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #006b38;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #008546;
+      }
+
+      .stadium-hero {
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(0, 107, 56, 0.42) 0%,
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 80% 15%,
+            rgba(0, 133, 70, 0.35) 0%,
+            transparent 45%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(0, 36, 18, 0.97) 0%,
+            rgba(0, 61, 31, 0.93) 50%,
+            rgba(0, 107, 56, 0.88) 100%
+          );
+      }
+      .emerald-gradient {
+        background: linear-gradient(135deg, #003d1f 0%, #006b38 100%);
+      }
+      .fade-in {
+        animation: fadeIn 0.35s ease-out forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .nav-active {
+        color: #ffffff !important;
+        background-color: rgba(0, 107, 56, 0.45);
+        border-bottom: 2px solid #ffffff;
+      }

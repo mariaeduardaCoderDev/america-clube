@@ -1010,7 +1010,7 @@ function renderContatos() {
                                 <h3 class="font-display text-lg font-extrabold text-america-900 mt-1 mb-3">Assessoria de Imprensa</h3>
                                 <p class="text-xs text-slate-600 mb-3">Credenciamento de jogos, entrevistas e solicitações de mídia.</p>
                                 <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>imprensa@americaclube.com</p>
-                                <p class="text-xs font-bold text-america-800 mt-1"><i class="fa-solid fa-phone mr-1.5 text-america-700"></i>(11) 3924-1930</p>
+                                <p class="text-xs font-bold text-america-800 mt-1"><i class="fa-solid fa-phone mr-1.5 text-america-700"></i>(19) 99608-3109</p>
                             </div>
 
                             <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">

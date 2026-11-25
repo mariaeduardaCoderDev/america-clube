@@ -364,7 +364,7 @@ function renderInicio() {
                                 (noticia) => `
                                 <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col">
                                     <div class="h-44 emerald-gradient p-6 flex flex-col justify-between text-white relative overflow-hidden">
-                                        ${noticia.imagem ? `<img src="${noticia.imagem}" alt="${noticia.titulo}" class="absolute inset-0 w-full h-full object-contain p-6" onerror="this.style.display='none'">` : `<i class="fa-solid ${noticia.imagemIcone} text-7xl text-white/10 absolute -right-3 -bottom-3"></i>`}
+                                        ${noticia.imagem ? `<img src="${noticia.imagem}" alt="${noticia.titulo}" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'"><div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60"></div>` : `<i class="fa-solid ${noticia.imagemIcone} text-7xl text-white/10 absolute -right-3 -bottom-3"></i>`}
                                         <span class="relative z-10 bg-america-950/70 backdrop-blur-sm text-emerald-300 text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full w-fit">${noticia.categoria}</span>
                                         <span class="relative z-10 text-xs text-emerald-100 font-medium">${noticia.data}</span>
                                     </div>
@@ -864,7 +864,7 @@ function renderNoticias() {
                                 (n) => `
                                 <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition flex flex-col">
                                     <div class="h-48 emerald-gradient p-6 flex flex-col justify-between text-white relative">
-                                        ${n.imagem ? `<img src="${n.imagem}" alt="${n.titulo}" class="absolute inset-0 w-full h-full object-contain p-8" onerror="this.style.display='none'">` : `<i class="fa-solid ${n.imagemIcone} text-8xl text-white/10 absolute right-4 bottom-2"></i>`}
+                                        ${n.imagem ? `<img src="${n.imagem}" alt="${n.titulo}" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'"><div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60"></div>` : `<i class="fa-solid ${n.imagemIcone} text-8xl text-white/10 absolute right-4 bottom-2"></i>`}
                                         <div class="relative z-10 flex items-center justify-between">
                                             <span class="bg-america-950/75 text-emerald-300 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">${n.categoria}</span>
                                             <span class="text-xs text-emerald-100">${n.data}</span>
@@ -1136,7 +1136,7 @@ function openNewsModal(id) {
                         <span><i class="fa-solid fa-user-pen mr-1 text-america-700"></i>${noticia.autor}</span>
                     </div>
                     <h2 class="font-display text-2xl sm:text-3xl font-black text-america-900 leading-snug">${noticia.titulo}</h2>
-                    ${noticia.imagem ? `<div class="emerald-gradient rounded-2xl p-6 flex items-center justify-center"><img src="${noticia.imagem}" alt="${noticia.titulo}" class="max-h-64 w-auto object-contain" onerror="this.parentElement.style.display='none'"></div>` : ""}
+                    ${noticia.imagem ? `<div class="rounded-2xl overflow-hidden"><img src="${noticia.imagem}" alt="${noticia.titulo}" class="w-full h-64 object-cover" onerror="this.parentElement.style.display='none'"></div>` : ""}
                     <div class="text-sm text-slate-700 space-y-4 leading-relaxed pt-2">
                         ${noticia.conteudo}
                     </div>

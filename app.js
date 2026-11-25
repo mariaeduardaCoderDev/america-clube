@@ -942,7 +942,7 @@ function renderNegocios() {
                                     </p>
                                     <div class="bg-america-900 text-white p-5 rounded-2xl space-y-2 text-xs">
                                         <p class="font-bold text-emerald-400 uppercase tracking-wider">Atendimento Corporativo Direto</p>
-                                        <p><i class="fa-solid fa-envelope mr-2 text-emerald-400"></i>comercial@americaclube.com.br</p>
+                                        <p><i class="fa-solid fa-envelope mr-2 text-emerald-400"></i>comercial@americaclube.com</p>
                                         <p><i class="fa-solid fa-phone mr-2 text-emerald-400"></i>+55 (11) 3924-1950</p>
                                     </div>
                                 </div>

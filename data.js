@@ -77,8 +77,9 @@ const AMERICA_DATA = {
       resumo: "Após longas conversas, o América Clube foi oficialmente fundado.",
       data: "23 Nov 2026",
       autor: "Assessoria de Imprensa AC",
-      imagem:"img/clube/escudo-america.jpeg",
+      
       imagemIcone: "fa-futbol",
+      imagem: "img/clube/escudo-america.jpeg",
       conteudo: `
         <p class="mb-4">No dia 23 de novembro de 2026, o América Clube foi oficialmente fundado. A criação da equipe aconteceu após diversas conversas para definir cada detalhe minuciosamente, dando o pontapé inicial em um projeto feito com dedicação e paixão pelo futebol amador.</p>
         <p class="mb-4">Com os pés no chão e muita vontade de vencer dentro de campo, o clube inicia sua trajetória em busca da glória, pronto para encarar os desafios e construir uma identidade forte.</p>

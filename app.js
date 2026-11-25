@@ -51,7 +51,7 @@ function getAmericaCrestSVG(className = "w-full h-full") {
 
 // ==================== ESTADO DA APLICAÇÃO ====================
 let currentState = {
-  route: "home",
+  route: "inicio",
   modalidadeAtiva: "futebol",
   filtroPosicao: "Todos",
   buscaAtleta: "",
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ==================== MEMÓRIA DA PÁGINA (reload) ====================
 const ROTAS_VALIDAS = [
-  "home",
+  "inicio",
   "historia",
   "gestao",
   "modalidades",
@@ -105,7 +105,7 @@ function lerRotaDoHash() {
     bruto = decodeURIComponent(location.hash.replace(/^#\/?/, ""));
   } catch (e) {}
   const [r, p] = bruto.split("/");
-  const route = ROTAS_VALIDAS.includes(r) ? r : "home";
+  const route = ROTAS_VALIDAS.includes(r) ? r : "inicio";
   const param =
     route === "modalidades" &&
     p &&
@@ -188,8 +188,8 @@ function navigateTo(route, param = null, origem = "usuario") {
   // Renderiza a seção correspondente
   const container = document.getElementById("app-content");
   switch (route) {
-    case "home":
-      container.innerHTML = renderHome();
+    case "inicio":
+      container.innerHTML = renderInicio();
       break;
     case "historia":
       container.innerHTML = renderHistoria();
@@ -210,7 +210,7 @@ function navigateTo(route, param = null, origem = "usuario") {
       container.innerHTML = renderContatos();
       break;
     default:
-      container.innerHTML = renderHome();
+      container.innerHTML = renderInicio();
   }
 
   if (origem === "inicial") {
@@ -220,8 +220,8 @@ function navigateTo(route, param = null, origem = "usuario") {
   }
 }
 
-// ==================== 1. SEÇÃO: HOME ====================
-function renderHome() {
+// ==================== 1. SEÇÃO: Início ====================
+function renderInicio() {
   const destaquesNoticias = AMERICA_DATA.noticias.slice(0, 3);
   return `
             <div class="fade-in">

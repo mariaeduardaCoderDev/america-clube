@@ -942,7 +942,7 @@ function renderNegocios() {
                                     </p>
                                     <div class="bg-america-900 text-white p-5 rounded-2xl space-y-2 text-xs">
                                         <p class="font-bold text-emerald-400 uppercase tracking-wider">Atendimento Corporativo Direto</p>
-                                        <p><i class="fa-solid fa-envelope mr-2 text-emerald-400"></i>comercial@americaclube.com</p>
+                                        <p><i class="fa-solid fa-envelope mr-2 text-emerald-400"></i>comercial@americaclube.com.br</p>
                                         <p><i class="fa-solid fa-phone mr-2 text-emerald-400"></i>+55 (11) 3924-1950</p>
                                     </div>
                                 </div>
@@ -1009,7 +1009,7 @@ function renderContatos() {
                                 <span class="text-xs font-bold uppercase text-america-700">Comunicação</span>
                                 <h3 class="font-display text-lg font-extrabold text-america-900 mt-1 mb-3">Assessoria de Imprensa</h3>
                                 <p class="text-xs text-slate-600 mb-3">Credenciamento de jogos, entrevistas e solicitações de mídia.</p>
-                                <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>imprensa@americaclube.com</p>
+                                <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>imprensa@americaclube.com.br</p>
                                 <p class="text-xs font-bold text-america-800 mt-1"><i class="fa-solid fa-phone mr-1.5 text-america-700"></i>(11) 3924-1930</p>
                             </div>
 
@@ -1017,7 +1017,7 @@ function renderContatos() {
                                 <span class="text-xs font-bold uppercase text-america-700">Integridade & Ética</span>
                                 <h3 class="font-display text-lg font-extrabold text-america-900 mt-1 mb-3">Ouvidoria Institucional</h3>
                                 <p class="text-xs text-slate-600 mb-3">Canal confidencial para sugestões, elogios e relatos éticos.</p>
-                                <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>ouvidoria@americaclube.com</p>
+                                <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>ouvidoria@americaclube.com.br</p>
                                 <p class="text-xs font-bold text-america-800 mt-1"><i class="fa-solid fa-shield-halved mr-1.5 text-america-700"></i>Sigilo Garantido</p>
                             </div>
 
@@ -1025,7 +1025,7 @@ function renderContatos() {
                                 <span class="text-xs font-bold uppercase text-america-700">Comercial & Parcerias</span>
                             <h3 class="font-display text-lg font-extrabold text-america-900 mt-1 mb-3">Negócios & Patrocínios</h3>
                             <p class="text-xs text-slate-600 mb-3">Canal exclusivo para empresas e empreendedores interessados em apoiar o América Clube, desenvolver parcerias e investir no crescimento do clube.</p>
-                            <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>comercial@americaclube.com</p>
+                            <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>comercial@americaclube.com.br</p>
                             <p class="text-xs font-bold text-america-800 mt-1"><i class="fa-solid fa-handshake mr-1.5 text-america-700"></i>Seja um parceiro do clube</p>
 </div>
                         </div>
@@ -1121,6 +1121,7 @@ function openAthleteModal(modKey, idx) {
                     </button>
                 </div>
             `;
+  setModalFullscreen(false);
   document.getElementById("universal-modal").classList.remove("hidden");
 }
 function openNewsModal(id) {
@@ -1130,13 +1131,13 @@ function openNewsModal(id) {
   document.getElementById("modal-tag").innerText =
     `Sala de Imprensa • ${noticia.categoria}`;
   document.getElementById("modal-body").innerHTML = `
-                <div class="space-y-5">
+                <div class="space-y-5 max-w-3xl mx-auto">
                     <div class="flex items-center justify-between text-xs text-slate-500 border-b border-slate-100 pb-3">
                         <span><i class="fa-solid fa-calendar mr-1 text-america-700"></i>${noticia.data}</span>
                         <span><i class="fa-solid fa-user-pen mr-1 text-america-700"></i>${noticia.autor}</span>
                     </div>
                     <h2 class="font-display text-2xl sm:text-3xl font-black text-america-900 leading-snug">${noticia.titulo}</h2>
-                    ${noticia.imagem ? `<div class="rounded-2xl overflow-hidden"><img src="${noticia.imagem}" alt="${noticia.titulo}" class="w-full h-64 object-cover" onerror="this.parentElement.style.display='none'"></div>` : ""}
+                    ${noticia.imagem ? `<div class="rounded-2xl overflow-hidden"><img src="${noticia.imagem}" alt="${noticia.titulo}" class="w-full h-64 sm:h-96 object-cover" onerror="this.parentElement.style.display='none'"></div>` : ""}
                     <div class="text-sm text-slate-700 space-y-4 leading-relaxed pt-2">
                         ${noticia.conteudo}
                     </div>
@@ -1147,11 +1148,47 @@ function openNewsModal(id) {
                     </div>
                 </div>
             `;
+  setModalFullscreen(true);
   document.getElementById("universal-modal").classList.remove("hidden");
+  document.getElementById("modal-body").scrollTop = 0;
+}
+
+// ==================== TELA CHEIA DO MODAL ====================
+// Aplica os estilos direto no elemento (não depende do style.css nem de cache)
+function setModalFullscreen(ativo) {
+  const modal = document.getElementById("universal-modal");
+  const panel = document.getElementById("modal-panel");
+  const body = document.getElementById("modal-body");
+  modal.classList.toggle("modal-fullscreen", ativo);
+
+  const v = (valor) => (ativo ? valor : "");
+  Object.assign(modal.style, {
+    padding: v("0"),
+    alignItems: v("stretch"),
+    overflow: v("hidden"),
+  });
+  Object.assign(panel.style, {
+    maxWidth: v("none"),
+    width: v("100%"),
+    height: v("100%"),
+    margin: v("0"),
+    border: v("0"),
+    borderRadius: v("0"),
+    display: v("flex"),
+    flexDirection: v("column"),
+  });
+  Object.assign(body.style, {
+    maxHeight: v("none"),
+    flex: v("1 1 auto"),
+    minHeight: v("0"),
+  });
+  // Trava a rolagem da página ao fundo enquanto está em tela cheia
+  document.body.style.overflow = ativo ? "hidden" : "";
 }
 
 // ==================== FECHAR MODAL ====================
 function closeModal() {
+  setModalFullscreen(false);
   document.getElementById("universal-modal").classList.add("hidden");
   document.getElementById("modal-body").innerHTML = "";
 }
@@ -1180,7 +1217,7 @@ function showToast(mensagem) {
 }
 
 // Mostra a mensagem e abre o link externo após alguns segundos
-function openExternalLink(event, url, mensagem, delayMs = 4500) {
+function openExternalLink(event, url, mensagem, delayMs = 2500) {
   event.preventDefault();
   showToast(mensagem);
   // Abre a aba já no clique (evita bloqueio de pop-up) e redireciona depois do atraso

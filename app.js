@@ -1,6 +1,6 @@
 // ==================== ESCUDO VETORIAL SVG OFICIAL DO AMÉRICA CLUBE ====================
-      function getAmericaCrestSVG(className = "w-full h-full") {
-        return `
+function getAmericaCrestSVG(className = "w-full h-full") {
+  return `
             <svg viewBox="0 0 220 220" class="${className} drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <path id="topArc" d="M 33,110 A 77,77 0 1,1 187,110" />
@@ -47,88 +47,183 @@
                 <polygon points="110,177 112.8,183.5 119.8,184 114.4,188.5 116.1,195.3 110,191.6 103.9,195.3 105.6,188.5 100.2,184 107.2,183.5" fill="#FFFFFF"/>
                 <line x1="128" y1="186" x2="155" y2="186" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
             </svg>`;
-      }
+}
 
-      // ==================== ESTADO DA APLICAÇÃO ====================
-      let currentState = {
-        route: "home",
-        modalidadeAtiva: "futebol",
-        filtroPosicao: "Todos",
-        buscaAtleta: "",
-        categoriaNoticia: "Todas",
-        simuladorJogosMes: 3,
-      };
+// ==================== ESTADO DA APLICAÇÃO ====================
+let currentState = {
+  route: "home",
+  modalidadeAtiva: "futebol",
+  filtroPosicao: "Todos",
+  buscaAtleta: "",
+  categoriaNoticia: "Todas",
+  simuladorJogosMes: 3,
+};
 
-      // ==================== INICIALIZAÇÃO ====================
-      document.addEventListener("DOMContentLoaded", () => {
-        document.getElementById("header-crest-container").innerHTML =
-          getAmericaCrestSVG();
-        document.getElementById("footer-crest-container").innerHTML =
-          getAmericaCrestSVG();
-        navigateTo("home");
+// ==================== INICIALIZAÇÃO ====================
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("header-crest-container").innerHTML =
+    getAmericaCrestSVG();
+  document.getElementById("footer-crest-container").innerHTML =
+    getAmericaCrestSVG();
+  // Evita que o navegador "pule" a rolagem antes de a página ser desenhada
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+  // Abre a página indicada no endereço (#gestao, #modalidades/futebol...)
+  const inicial = lerRotaDoHash();
+  navigateTo(inicial.route, inicial.param, "inicial");
+
+  // Botão voltar/avançar do navegador
+  window.addEventListener("hashchange", () => {
+    const r = lerRotaDoHash();
+    const mesma =
+      r.route === currentState.route &&
+      (r.route !== "modalidades" ||
+        !r.param ||
+        r.param === currentState.modalidadeAtiva);
+    if (!mesma) navigateTo(r.route, r.param, "hash");
+  });
+
+  // Guarda a posição da rolagem ao recarregar/sair
+  window.addEventListener("pagehide", salvarScroll);
+  window.addEventListener("beforeunload", salvarScroll);
+});
+
+// ==================== MEMÓRIA DA PÁGINA (reload) ====================
+const ROTAS_VALIDAS = [
+  "home",
+  "historia",
+  "gestao",
+  "modalidades",
+  "noticias",
+  "negocios",
+  "contatos",
+];
+
+function lerRotaDoHash() {
+  let bruto = "";
+  try {
+    bruto = decodeURIComponent(location.hash.replace(/^#\/?/, ""));
+  } catch (e) {}
+  const [r, p] = bruto.split("/");
+  const route = ROTAS_VALIDAS.includes(r) ? r : "home";
+  const param =
+    route === "modalidades" &&
+    p &&
+    Object.prototype.hasOwnProperty.call(AMERICA_DATA.modalidades, p)
+      ? p
+      : null;
+  return { route, param };
+}
+
+function hashAtual() {
+  return (
+    "#" +
+    (currentState.route === "modalidades"
+      ? `modalidades/${currentState.modalidadeAtiva}`
+      : currentState.route)
+  );
+}
+
+// Atualiza o endereço sem rolar a página nem recarregar
+function gravarHash() {
+  const alvo = hashAtual();
+  if (location.hash === alvo) return;
+  try {
+    history.pushState(null, "", alvo);
+  } catch (e) {
+    location.hash = alvo;
+  }
+}
+
+function salvarScroll() {
+  try {
+    sessionStorage.setItem(
+      "ac_scroll",
+      JSON.stringify({ hash: hashAtual(), y: window.scrollY }),
+    );
+  } catch (e) {}
+}
+
+function restaurarScroll() {
+  try {
+    const s = JSON.parse(sessionStorage.getItem("ac_scroll") || "null");
+    if (s && s.hash === hashAtual() && s.y > 0) {
+      window.scrollTo(0, s.y);
+      // Imagens podem aumentar a altura da página: reaplica ao terminar de carregar
+      window.addEventListener("load", () => window.scrollTo(0, s.y), {
+        once: true,
       });
+    }
+  } catch (e) {}
+}
 
-      function toggleMobileMenu() {
-        const menu = document.getElementById("mobile-menu");
-        menu.classList.toggle("hidden");
-      }
+function toggleMobileMenu() {
+  const menu = document.getElementById("mobile-menu");
+  menu.classList.toggle("hidden");
+}
 
-      // ==================== ROTEAMENTO SPA ====================
-      function navigateTo(route, param = null) {
-        currentState.route = route;
-        if (route === "modalidades" && param) {
-          currentState.modalidadeAtiva = param;
-          currentState.filtroPosicao = "Todos";
-          currentState.buscaAtleta = "";
-        }
+// ==================== ROTEAMENTO SPA ====================
+// origem: "usuario" (clique), "inicial" (carregamento) ou "hash" (voltar/avançar)
+function navigateTo(route, param = null, origem = "usuario") {
+  currentState.route = route;
+  if (route === "modalidades" && param) {
+    currentState.modalidadeAtiva = param;
+    currentState.filtroPosicao = "Todos";
+    currentState.buscaAtleta = "";
+  }
+  if (origem === "usuario") gravarHash();
 
-        // Atualiza estado ativo no menu
-        document.querySelectorAll(".nav-btn").forEach((btn) => {
-          if (btn.dataset.nav === route) {
-            btn.classList.add("nav-active");
-          } else {
-            btn.classList.remove("nav-active");
-          }
-        });
+  // Atualiza estado ativo no menu
+  document.querySelectorAll(".nav-btn").forEach((btn) => {
+    if (btn.dataset.nav === route) {
+      btn.classList.add("nav-active");
+    } else {
+      btn.classList.remove("nav-active");
+    }
+  });
 
-        // Fecha menu mobile se aberto
-        document.getElementById("mobile-menu").classList.add("hidden");
+  // Fecha menu mobile se aberto
+  document.getElementById("mobile-menu").classList.add("hidden");
 
-        // Renderiza a seção correspondente
-        const container = document.getElementById("app-content");
-        switch (route) {
-          case "home":
-            container.innerHTML = renderHome();
-            break;
-          case "historia":
-            container.innerHTML = renderHistoria();
-            break;
-          case "gestao":
-            container.innerHTML = renderGestao();
-            break;
-          case "modalidades":
-            container.innerHTML = renderModalidades();
-            break;
-          case "noticias":
-            container.innerHTML = renderNoticias();
-            break;
-          case "negocios":
-            container.innerHTML = renderNegocios();
-            break;
-          case "contatos":
-            container.innerHTML = renderContatos();
-            break;
-          default:
-            container.innerHTML = renderHome();
-        }
+  // Renderiza a seção correspondente
+  const container = document.getElementById("app-content");
+  switch (route) {
+    case "home":
+      container.innerHTML = renderHome();
+      break;
+    case "historia":
+      container.innerHTML = renderHistoria();
+      break;
+    case "gestao":
+      container.innerHTML = renderGestao();
+      break;
+    case "modalidades":
+      container.innerHTML = renderModalidades();
+      break;
+    case "noticias":
+      container.innerHTML = renderNoticias();
+      break;
+    case "negocios":
+      container.innerHTML = renderNegocios();
+      break;
+    case "contatos":
+      container.innerHTML = renderContatos();
+      break;
+    default:
+      container.innerHTML = renderHome();
+  }
 
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
+  if (origem === "inicial") {
+    restaurarScroll();
+  } else {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
 
-      // ==================== 1. SEÇÃO: HOME ====================
-      function renderHome() {
-        const destaquesNoticias = AMERICA_DATA.noticias.slice(0, 3);
-        return `
+// ==================== 1. SEÇÃO: HOME ====================
+function renderHome() {
+  const destaquesNoticias = AMERICA_DATA.noticias.slice(0, 3);
+  return `
             <div class="fade-in">
                 <!-- HERO BANNER COM ILUMINAÇÃO DE ESTÁDIO -->
                 <section class="stadium-hero text-white relative overflow-hidden border-b border-america-700">
@@ -188,7 +283,7 @@
                                         </div>
 
                                         <div class="flex flex-col items-center justify-center w-1/3">
-                                            <span class="font-sport text-3xl sm:text-4xl font-bold text-white tracking-widest">21:30</span>
+                                            <span class="font-sport text-3xl sm:text-4xl font-bold text-white tracking-widest"></span></span>
                                             <span class="text-xs font-semibold text-slate-300 mt-1">Data a definir</span>
                                         </div>
 
@@ -292,11 +387,11 @@
                 </section>
 
             </div>`;
-      }
+}
 
-      // ==================== 2. SEÇÃO: HISTÓRIA ====================
-      function renderHistoria() {
-        return `
+// ==================== 2. SEÇÃO: HISTÓRIA ====================
+function renderHistoria() {
+  return `
             <div class="fade-in">
                 <!-- Cabeçalho da Seção -->
                 <section class="bg-america-900 text-white py-16 border-b border-america-700">
@@ -385,43 +480,43 @@
                     </div>
                 </section>
             </div>`;
-      }
-      // ==================== SEÇÃO: GESTÃO ====================
-      function gestaoIniciais(nome) {
-        return nome
-          .split(" ")
-          .filter(Boolean)
-          .slice(0, 2)
-          .map((p) => p[0])
-          .join("")
-          .toUpperCase();
-      }
+}
+// ==================== SEÇÃO: GESTÃO ====================
+function gestaoIniciais(nome) {
+  return nome
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0])
+    .join("")
+    .toUpperCase();
+}
 
-      // Avatar: foto (se existir e carregar) -> iniciais -> ícone do cargo
-      function gestaoAvatar(item, sizeClasses, textClasses) {
-        const conteudo = item.ativo
-          ? `<span class="font-sport font-bold ${textClasses}">${gestaoIniciais(item.nome)}</span>`
-          : `<i class="fa-solid ${item.icone || "fa-user"} ${textClasses} opacity-60"></i>`;
-        const foto = item.foto
-          ? `<img src="${item.foto}" alt="${item.nome}" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">`
-          : "";
-        return `
+// Avatar: foto (se existir e carregar) -> iniciais -> ícone do cargo
+function gestaoAvatar(item, sizeClasses, textClasses) {
+  const conteudo = item.ativo
+    ? `<span class="font-sport font-bold ${textClasses}">${gestaoIniciais(item.nome)}</span>`
+    : `<i class="fa-solid ${item.icone || "fa-user"} ${textClasses} opacity-60"></i>`;
+  const foto = item.foto
+    ? `<img src="${item.foto}" alt="${item.nome}" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">`
+    : "";
+  return `
           <div class="relative ${sizeClasses} flex items-center justify-center overflow-hidden">
             ${conteudo}
             ${foto}
           </div>`;
-      }
+}
 
-      function renderGestao() {
-        const [presidente, ...demais] = AMERICA_DATA.gestao;
-        const total = AMERICA_DATA.gestao.length;
-        const preenchidos = AMERICA_DATA.gestao.filter((g) => g.ativo).length;
-        const abertos = total - preenchidos;
-        const faixa = 50 / demais.length; // posição do 1º/último card na barra do organograma
+function renderGestao() {
+  const [presidente, ...demais] = AMERICA_DATA.gestao;
+  const total = AMERICA_DATA.gestao.length;
+  const preenchidos = AMERICA_DATA.gestao.filter((g) => g.ativo).length;
+  const abertos = total - preenchidos;
+  const faixa = 50 / demais.length; // posição do 1º/último card na barra do organograma
 
-        const cardDemais = (g) =>
-          g.ativo
-            ? `
+  const cardDemais = (g) =>
+    g.ativo
+      ? `
             <article class="h-full bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col">
               <div class="flex items-center gap-4">
                 ${gestaoAvatar(g, "w-16 h-16 rounded-xl bg-america-900 text-white border border-america-700 flex-shrink-0", "text-xl")}
@@ -433,7 +528,7 @@
               <p class="text-sm text-emerald-800 font-semibold mt-4">${g.subtitulo}</p>
               <p class="text-sm text-slate-600 leading-relaxed mt-1">${g.bio}</p>
             </article>`
-            : `
+      : `
             <article class="h-full bg-white/60 rounded-2xl border-2 border-dashed border-america-700/30 p-6 flex flex-col">
               <div class="flex items-center gap-4">
                 ${gestaoAvatar(g, "w-16 h-16 rounded-xl bg-america-100 text-america-700 border border-america-700/20 flex-shrink-0", "text-2xl")}
@@ -450,7 +545,7 @@
               </button>
             </article>`;
 
-        return `
+  return `
           <div class="fade-in">
             <!-- Cabeçalho -->
             <section class="bg-america-900 text-white py-16 border-b border-america-700">
@@ -529,27 +624,24 @@
               </div>
             </section>
           </div>`;
-      }
+}
 
+// ==================== 3. SEÇÃO: MODALIDADES & ELENCOS ====================
+function renderModalidades() {
+  const mod = AMERICA_DATA.modalidades[currentState.modalidadeAtiva];
+  const posicoes = ["Todos", ...new Set(mod.atletas.map((a) => a.pos))];
 
-      // ==================== 3. SEÇÃO: MODALIDADES & ELENCOS ====================
-      function renderModalidades() {
-        const mod = AMERICA_DATA.modalidades[currentState.modalidadeAtiva];
-        const posicoes = ["Todos", ...new Set(mod.atletas.map((a) => a.pos))];
+  const atletasFiltrados = mod.atletas.filter((a) => {
+    const matchPos =
+      currentState.filtroPosicao === "Todos" ||
+      a.pos === currentState.filtroPosicao;
+    const matchBusca =
+      a.nome.toLowerCase().includes(currentState.buscaAtleta.toLowerCase()) ||
+      String(a.num).includes(currentState.buscaAtleta);
+    return matchPos && matchBusca;
+  });
 
-        const atletasFiltrados = mod.atletas.filter((a) => {
-          const matchPos =
-            currentState.filtroPosicao === "Todos" ||
-            a.pos === currentState.filtroPosicao;
-          const matchBusca =
-            a.nome
-              .toLowerCase()
-              .includes(currentState.buscaAtleta.toLowerCase()) ||
-            String(a.num).includes(currentState.buscaAtleta);
-          return matchPos && matchBusca;
-        });
-
-        return `
+  return `
             <div class="fade-in">
                 <!-- Cabeçalho -->
                 <section class="bg-america-900 text-white py-14 border-b border-america-700">
@@ -701,41 +793,42 @@
                     </div>
                 </section>
             </div>`;
-      }
-      function selectModalidade(key) {
-        currentState.modalidadeAtiva = key;
-        currentState.filtroPosicao = "Todos";
-        currentState.buscaAtleta = "";
-        document.getElementById("app-content").innerHTML = renderModalidades();
-      }
+}
+function selectModalidade(key) {
+  currentState.modalidadeAtiva = key;
+  currentState.filtroPosicao = "Todos";
+  currentState.buscaAtleta = "";
+  gravarHash();
+  document.getElementById("app-content").innerHTML = renderModalidades();
+}
 
-      function filterPosicao(pos) {
-        currentState.filtroPosicao = pos;
-        document.getElementById("app-content").innerHTML = renderModalidades();
-      }
+function filterPosicao(pos) {
+  currentState.filtroPosicao = pos;
+  document.getElementById("app-content").innerHTML = renderModalidades();
+}
 
-      function searchAtleta(val) {
-        currentState.buscaAtleta = val;
-        document.getElementById("app-content").innerHTML = renderModalidades();
-      }
+function searchAtleta(val) {
+  currentState.buscaAtleta = val;
+  document.getElementById("app-content").innerHTML = renderModalidades();
+}
 
-      // ==================== 5. SEÇÃO: NOTÍCIAS & SALA DE IMPRENSA ====================
-      function renderNoticias() {
-        const categorias = [
-          "Todas",
-          "Futebol",
-          "Modalidades",
-          "Institucional",
-          "Mercado",
-        ];
-        const lista =
-          currentState.categoriaNoticia === "Todas"
-            ? AMERICA_DATA.noticias
-            : AMERICA_DATA.noticias.filter(
-                (n) => n.categoria === currentState.categoriaNoticia,
-              );
+// ==================== 5. SEÇÃO: NOTÍCIAS & SALA DE IMPRENSA ====================
+function renderNoticias() {
+  const categorias = [
+    "Todas",
+    "Futebol",
+    "Modalidades",
+    "Institucional",
+    "Mercado",
+  ];
+  const lista =
+    currentState.categoriaNoticia === "Todas"
+      ? AMERICA_DATA.noticias
+      : AMERICA_DATA.noticias.filter(
+          (n) => n.categoria === currentState.categoriaNoticia,
+        );
 
-        return `
+  return `
             <div class="fade-in">
                 <section class="bg-america-900 text-white py-14 border-b border-america-700">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -796,16 +889,16 @@
                     </div>
                 </section>
             </div>`;
-      }
+}
 
-      function filterNoticias(cat) {
-        currentState.categoriaNoticia = cat;
-        document.getElementById("app-content").innerHTML = renderNoticias();
-      }
+function filterNoticias(cat) {
+  currentState.categoriaNoticia = cat;
+  document.getElementById("app-content").innerHTML = renderNoticias();
+}
 
-      // ==================== 7. SEÇÃO: NEGÓCIOS & PATROCINADORES ====================
-      function renderNegocios() {
-        return `
+// ==================== 7. SEÇÃO: NEGÓCIOS & PATROCINADORES ====================
+function renderNegocios() {
+  return `
             <div class="fade-in">
                 <section class="stadium-hero text-white py-16 border-b border-america-700">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -888,17 +981,17 @@
                     </div>
                 </section>
             </div>`;
-      }
+}
 
-      function handleBusinessSubmit(e) {
-        e.preventDefault();
-        showToast(
-          "Solicitação comercial registrada! Protocolo #COM-2026 enviado para o seu e-mail.",
-        );
-        e.target.reset();
-      } // ==================== 8. SEÇÃO: CONTATOS & OUVIDORIA ====================
-      function renderContatos() {
-        return `
+function handleBusinessSubmit(e) {
+  e.preventDefault();
+  showToast(
+    "Solicitação comercial registrada! Protocolo #COM-2026 enviado para o seu e-mail.",
+  );
+  e.target.reset();
+} // ==================== 8. SEÇÃO: CONTATOS & OUVIDORIA ====================
+function renderContatos() {
+  return `
             <div class="fade-in">
                 <section class="bg-america-900 text-white py-14 border-b border-america-700">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -927,6 +1020,14 @@
                                 <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>ouvidoria@americaclube.com.br</p>
                                 <p class="text-xs font-bold text-america-800 mt-1"><i class="fa-solid fa-shield-halved mr-1.5 text-america-700"></i>Sigilo Garantido</p>
                             </div>
+
+                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                                <span class="text-xs font-bold uppercase text-america-700">Comercial & Parcerias</span>
+                            <h3 class="font-display text-lg font-extrabold text-america-900 mt-1 mb-3">Negócios & Patrocínios</h3>
+                            <p class="text-xs text-slate-600 mb-3">Canal exclusivo para empresas e empreendedores interessados em apoiar o América Clube, desenvolver parcerias e investir no crescimento do clube.</p>
+                            <p class="text-xs font-bold text-america-800"><i class="fa-solid fa-envelope mr-1.5 text-america-700"></i>comercial@americaclube.com.br</p>
+                            <p class="text-xs font-bold text-america-800 mt-1"><i class="fa-solid fa-handshake mr-1.5 text-america-700"></i>Seja um parceiro do clube</p>
+</div>
                         </div>
 
                         <!-- Formulário de Contato + Localização -->
@@ -965,22 +1066,22 @@
                     </div>
                 </section>
             </div>`;
-      }
+}
 
-      function handleContactSubmit(e) {
-        e.preventDefault();
-        const protocolo = Math.floor(100000 + Math.random() * 900000);
-        showToast(`Mensagem enviada com sucesso! Protocolo #AC-${protocolo}.`);
-        e.target.reset();
-      } // ==================== MODAIS INTERATIVOS ====================
-      function openAthleteModal(modKey, idx) {
-        const mod = AMERICA_DATA.modalidades[modKey];
-        const atleta = mod.atletas[idx];
-        if (!atleta) return;
+function handleContactSubmit(e) {
+  e.preventDefault();
+  const protocolo = Math.floor(100000 + Math.random() * 900000);
+  showToast(`Mensagem enviada com sucesso! Protocolo #AC-${protocolo}.`);
+  e.target.reset();
+} // ==================== MODAIS INTERATIVOS ====================
+function openAthleteModal(modKey, idx) {
+  const mod = AMERICA_DATA.modalidades[modKey];
+  const atleta = mod.atletas[idx];
+  if (!atleta) return;
 
-        document.getElementById("modal-tag").innerText =
-          `Ficha Técnica • ${mod.nome}`;
-        document.getElementById("modal-body").innerHTML = `
+  document.getElementById("modal-tag").innerText =
+    `Ficha Técnica • ${mod.nome}`;
+  document.getElementById("modal-body").innerHTML = `
                 <div class="space-y-6">
                     <div class="flex items-center gap-5 bg-america-900 text-white p-6 rounded-2xl">
                         <div class="relative w-24 h-28 rounded-xl bg-america-800 border border-emerald-400/40 flex items-center justify-center font-sport text-3xl font-bold flex-shrink-0 overflow-hidden">
@@ -1020,15 +1121,15 @@
                     </button>
                 </div>
             `;
-        document.getElementById("universal-modal").classList.remove("hidden");
-      }
-      function openNewsModal(id) {
-        const noticia = AMERICA_DATA.noticias.find((n) => n.id === id);
-        if (!noticia) return;
+  document.getElementById("universal-modal").classList.remove("hidden");
+}
+function openNewsModal(id) {
+  const noticia = AMERICA_DATA.noticias.find((n) => n.id === id);
+  if (!noticia) return;
 
-        document.getElementById("modal-tag").innerText =
-          `Sala de Imprensa • ${noticia.categoria}`;
-        document.getElementById("modal-body").innerHTML = `
+  document.getElementById("modal-tag").innerText =
+    `Sala de Imprensa • ${noticia.categoria}`;
+  document.getElementById("modal-body").innerHTML = `
                 <div class="space-y-5">
                     <div class="flex items-center justify-between text-xs text-slate-500 border-b border-slate-100 pb-3">
                         <span><i class="fa-solid fa-calendar mr-1 text-america-700"></i>${noticia.data}</span>
@@ -1045,34 +1146,34 @@
                     </div>
                 </div>
             `;
-        document.getElementById("universal-modal").classList.remove("hidden");
-      }
+  document.getElementById("universal-modal").classList.remove("hidden");
+}
 
-      // ==================== FECHAR MODAL ====================
-      function closeModal() {
-        document.getElementById("universal-modal").classList.add("hidden");
-        document.getElementById("modal-body").innerHTML = "";
-      }
+// ==================== FECHAR MODAL ====================
+function closeModal() {
+  document.getElementById("universal-modal").classList.add("hidden");
+  document.getElementById("modal-body").innerHTML = "";
+}
 
-      // Fecha com a tecla Esc e ao clicar fora da janela
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeModal();
-      });
-      document.getElementById("universal-modal").addEventListener("click", (e) => {
-        if (e.target.id === "universal-modal") closeModal();
-      });
+// Fecha com a tecla Esc e ao clicar fora da janela
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+document.getElementById("universal-modal").addEventListener("click", (e) => {
+  if (e.target.id === "universal-modal") closeModal();
+});
 
-      // ==================== NOTIFICAÇÃO TOAST ====================
-      function showToast(mensagem) {
-        const container = document.getElementById("toast-container");
-        const toast = document.createElement("div");
-        toast.className =
-          "fade-in pointer-events-auto bg-america-900 text-white text-sm font-semibold px-5 py-3 rounded-xl shadow-xl border border-america-700 max-w-xs";
-        toast.textContent = mensagem;
-        container.appendChild(toast);
-        setTimeout(() => {
-          toast.style.transition = "opacity 0.3s";
-          toast.style.opacity = "0";
-          setTimeout(() => toast.remove(), 300);
-        }, 3500);
-      }
+// ==================== NOTIFICAÇÃO TOAST ====================
+function showToast(mensagem) {
+  const container = document.getElementById("toast-container");
+  const toast = document.createElement("div");
+  toast.className =
+    "fade-in pointer-events-auto bg-america-900 text-white text-sm font-semibold px-5 py-3 rounded-xl shadow-xl border border-america-700 max-w-xs";
+  toast.textContent = mensagem;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.transition = "opacity 0.3s";
+    toast.style.opacity = "0";
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}

@@ -5,7 +5,7 @@ const AMERICA_DATA = {
       icone: "fa-landmark",
       nome: "Maria Eduarda",
         subtitulo: "Presidente Fundadora",
-        foto: "img/gestao/maria-eduardaa.jpeg",
+        foto: "img/gestao/maria-eduarda.jpeg",
       bio: "Responsável pela estruturação institucional, administrativa e esportiva do América Clube em Mococa.",
       ativo: true,
     },

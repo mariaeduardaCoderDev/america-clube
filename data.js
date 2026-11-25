@@ -247,49 +247,58 @@ const AMERICA_DATA = {
       ],
     },
   },
-  noticias: [
-    {
-      id: 1,
-      categoria: "Futebol",
-      titulo: "América Clube é oficialmente fundado",
-      resumo:
-        "Após longas conversas, o América Clube foi oficialmente fundado.",
-      data: "23 Nov 2026",
-      autor: "Assessoria de Imprensa AC",
+ noticias: [
+  {
+    id: 1,
+    categoria: "Futebol",
+    titulo: "América Clube é oficialmente fundado",
+    resumo:
+      "Após um período de planejamento e conversas, o América Clube é oficialmente fundado e inicia um novo capítulo no futebol amador.",
+    data: "23 Nov 2026",
+    autor: "Assessoria de Imprensa AC",
 
-      imagemIcone: "fa-futbol",
-      imagem: "img/clube/escudo-america.jpeg",
-      conteudo: `
-        <h2 class="text-2xl font-bold mb-4">
-    América Clube é oficialmente fundado e dá início a um novo capítulo no futebol
-</h2>
+    imagemIcone: "fa-futbol",
+    imagem: "img/clube/escudo-america.jpeg",
 
-<p class="mb-4">
-    O dia 23 de novembro de 2026 entra para a história como a data oficial de fundação do América Clube. Fruto de conversas, planejamento e dedicação, o clube nasce com o propósito de construir uma trajetória sólida, pautada pela paixão pelo futebol, pelo compromisso coletivo e pela vontade de alcançar grandes objetivos.
-</p>
+    conteudo: `
+      <p class="mb-5">
+        O dia 23 de novembro de 2026 entra para a história como a data oficial de fundação do América Clube. Fruto de conversas, planejamento e dedicação, o clube nasce com o propósito de construir uma trajetória sólida, pautada pela paixão pelo futebol, pelo compromisso coletivo e pela vontade de alcançar grandes objetivos.
+      </p>
 
-<p class="mb-4">
-    A criação do América Clube representa o primeiro passo de um projeto que vai além das quatro linhas. Com os pés no chão, ambição e determinação, a equipe inicia sua caminhada preparada para enfrentar os desafios que surgirem, desenvolver sua identidade e escrever os primeiros capítulos de sua história.
-</p>
+      <h2 class="text-3xl font-bold mt-10 mb-5">
+        O nascimento de um novo projeto
+      </h2>
 
-<p class="mb-4">
-    Mais do que formar um time, o objetivo é construir um clube. Uma instituição que represente seus integrantes dentro e fora de campo, valorize o espírito de equipe e tenha como princípios o respeito, a dedicação e a busca constante por evolução.
-</p>
+      <p class="mb-5">
+        A criação do América Clube representa o primeiro passo de um projeto que vai além das quatro linhas. Com os pés no chão, ambição e determinação, a equipe inicia sua caminhada preparada para enfrentar os desafios que surgirem, desenvolver sua identidade e escrever os primeiros capítulos de sua história.
+      </p>
 
-<p class="mb-4">
-    Agora, começa uma nova jornada. O América Clube convida torcedores, apoiadores e todos aqueles que acreditam neste projeto a fazer parte dessa história desde o primeiro capítulo.
-</p>
+      <h2 class="text-3xl font-bold mt-10 mb-5">
+        Muito além das quatro linhas
+      </h2>
 
-<p class="font-bold">
-    Uma história começa hoje. Um novo escudo, uma nova identidade e um só objetivo: fazer história.
-</p>
+      <p class="mb-5">
+        Mais do que formar um time, o objetivo é construir um clube. Uma instituição que represente seus integrantes dentro e fora de campo, valorize o espírito de equipe e tenha como princípios o respeito, a dedicação e a busca constante por evolução.
+      </p>
 
-<p class="font-bold text-lg mt-4">
-    SEJA BEM-VINDO, AMÉRICA CLUBE!
-</p>
-      `,
-    },
-  ],
+      <h2 class="text-3xl font-bold mt-10 mb-5">
+        Uma história que começa agora
+      </h2>
+
+      <p class="mb-5">
+        Agora, começa uma nova jornada. O América Clube convida torcedores, apoiadores e todos aqueles que acreditam neste projeto a fazer parte dessa história desde o primeiro capítulo.
+      </p>
+
+      <p class="font-bold text-xl mt-8 mb-4">
+        Uma história começa hoje. Um novo escudo, uma nova identidade e um só objetivo: fazer história.
+      </p>
+
+      <p class="font-bold text-2xl mt-6">
+        SEJA BEM-VINDO, AMÉRICA CLUBE!
+      </p>
+    `,
+  },
+],
   historia: [
     {
       ano: "2026",

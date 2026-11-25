@@ -247,13 +247,14 @@ const AMERICA_DATA = {
       ],
     },
   },
- noticias: [
+ 
+  noticias: [
   {
     id: 1,
-    categoria: "Futebol",
-    titulo: "América Clube é oficialmente fundado",
+    categoria: "Institucional",
+    titulo: "América Clube é oficialmente fundado e inicia sua trajetória no futebol",
     resumo:
-      "Após um período de planejamento e conversas, o América Clube é oficialmente fundado e inicia um novo capítulo no futebol amador.",
+      "Fundado em 23 de novembro de 2026, o América Clube inicia um novo projeto esportivo sob a presidência de Maria Eduarda e uma equipe de gestão comprometida com o desenvolvimento da instituição.",
     data: "23 Nov 2026",
     autor: "Assessoria de Imprensa AC",
 
@@ -262,35 +263,71 @@ const AMERICA_DATA = {
 
     conteudo: `
       <p class="mb-5">
-        O dia 23 de novembro de 2026 entra para a história como a data oficial de fundação do América Clube. Fruto de conversas, planejamento e dedicação, o clube nasce com o propósito de construir uma trajetória sólida, pautada pela paixão pelo futebol, pelo compromisso coletivo e pela vontade de alcançar grandes objetivos.
+        O dia 23 de novembro de 2026 passa a ocupar um lugar especial na história do América Clube. Nesta data, foi oficialmente fundada a instituição, marcando o início de um novo projeto no cenário do futebol amador. Resultado de conversas, planejamento e dedicação, o nascimento do clube representa a concretização de uma ideia construída com paixão pelo esporte e vontade de fazer a diferença dentro e fora de campo.
+      </p>
+
+      <p class="mb-5">
+        A fundação representa mais do que a criação de uma equipe de futebol. É o primeiro passo para a construção de uma instituição com identidade própria, princípios definidos e objetivos a serem alcançados ao longo de sua caminhada. Desde as primeiras conversas, a proposta foi organizar cada detalhe com responsabilidade, buscando estabelecer uma base administrativa e esportiva para o desenvolvimento do projeto.
       </p>
 
       <h2 class="text-3xl font-bold mt-10 mb-5">
-        O nascimento de um novo projeto
+        Uma nova história começa
       </h2>
 
       <p class="mb-5">
-        A criação do América Clube representa o primeiro passo de um projeto que vai além das quatro linhas. Com os pés no chão, ambição e determinação, a equipe inicia sua caminhada preparada para enfrentar os desafios que surgirem, desenvolver sua identidade e escrever os primeiros capítulos de sua história.
+        O América Clube nasce com os pés no chão, mas com grandes ambições. A paixão pelo futebol é o ponto de partida de uma caminhada que pretende ser construída com trabalho, dedicação, união e compromisso. A instituição inicia suas atividades consciente dos desafios que fazem parte do futebol amador, mas determinada a trabalhar para conquistar seu espaço e desenvolver uma trajetória marcada por evolução constante.
+      </p>
+
+      <p class="mb-5">
+        Cada etapa deste início representa a construção de uma identidade. A intenção é fazer com que o clube seja reconhecido não apenas pelos resultados dentro das quatro linhas, mas também pela organização, pelo respeito aos seus integrantes e pela seriedade com que conduzirá suas atividades.
       </p>
 
       <h2 class="text-3xl font-bold mt-10 mb-5">
-        Muito além das quatro linhas
+        Maria Eduarda assume a presidência do clube
       </h2>
 
       <p class="mb-5">
-        Mais do que formar um time, o objetivo é construir um clube. Uma instituição que represente seus integrantes dentro e fora de campo, valorize o espírito de equipe e tenha como princípios o respeito, a dedicação e a busca constante por evolução.
+        À frente da instituição, Maria Eduarda assume a presidência do América Clube, ficando responsável por conduzir a administração e representar oficialmente o projeto em sua caminhada. Sua presença na liderança marca o início de uma estrutura diretiva que terá papel fundamental na organização e no desenvolvimento do clube.
+      </p>
+
+      <p class="mb-5">
+        Ao lado da presidente, a gestão conta com a participação de Raul, Valdir Jr. e Luis Henrique, que integram a equipe de gestores da instituição. O grupo estará envolvido no acompanhamento e na organização das atividades do clube, contribuindo para o desenvolvimento das ações administrativas e para a construção de uma estrutura capaz de atender aos objetivos estabelecidos.
+      </p>
+
+      <p class="mb-5">
+        A formação dessa equipe representa um passo importante neste primeiro momento. A união entre liderança e gestão será fundamental para organizar os próximos passos, estabelecer prioridades e trabalhar para que o América Clube tenha condições de crescer de maneira estruturada.
       </p>
 
       <h2 class="text-3xl font-bold mt-10 mb-5">
-        Uma história que começa agora
+        Planejamento e compromisso com o futuro
       </h2>
 
       <p class="mb-5">
-        Agora, começa uma nova jornada. O América Clube convida torcedores, apoiadores e todos aqueles que acreditam neste projeto a fazer parte dessa história desde o primeiro capítulo.
+        O início de uma instituição exige responsabilidade, organização e planejamento. Por isso, o América Clube começa sua história com a atenção voltada à construção de suas bases, buscando estruturar suas atividades e preparar o caminho para os próximos desafios.
       </p>
 
-      <p class="font-bold text-xl mt-8 mb-4">
-        Uma história começa hoje. Um novo escudo, uma nova identidade e um só objetivo: fazer história.
+      <p class="mb-5">
+        A proposta é desenvolver um projeto que valorize o futebol, seus atletas, colaboradores, apoiadores e todos aqueles que venham a fazer parte dessa caminhada. Cada conquista deverá ser resultado de um trabalho coletivo, no qual o comprometimento de todos será essencial para o crescimento da instituição.
+      </p>
+
+      <p class="mb-5">
+        O caminho está apenas começando. Ainda existem etapas a serem construídas, desafios a serem enfrentados e objetivos a serem alcançados. Mas o primeiro passo já foi dado: o América Clube agora é uma realidade.
+      </p>
+
+      <h2 class="text-3xl font-bold mt-10 mb-5">
+        Torcedores e apoiadores: façam parte desta história
+      </h2>
+
+      <p class="mb-5">
+        Nenhum clube constrói sua história sozinho. A participação dos torcedores, apoiadores, parceiros e de todos que acreditam no projeto será parte importante dessa trajetória. O América Clube nasce aberto a construir uma relação de proximidade com sua comunidade, fortalecendo seus vínculos e criando uma identidade que possa ser representada com orgulho.
+      </p>
+
+      <p class="mb-5">
+        A partir de agora, cada capítulo será escrito com trabalho, dedicação e paixão pelo futebol. A fundação é apenas o começo de uma caminhada que pretende deixar sua marca no esporte amador.
+      </p>
+
+      <p class="font-bold text-xl mt-10 mb-4">
+        Uma nova instituição, uma nova identidade e uma história inteira pela frente.
       </p>
 
       <p class="font-bold text-2xl mt-6">

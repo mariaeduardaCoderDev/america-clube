@@ -116,7 +116,7 @@ const AMERICA_DATA = {
           num: 2,
           nome: "Vinícius",
           pos: "Zagueiro",
-          idade: 0,
+          idade: 25,
           nac: "Brasil",
           foto: "img/atletas/vinicius.jpeg",
           jogos: 0,

@@ -178,7 +178,7 @@ const AMERICA_DATA = {
           pos: "Meio Campo",
           idade: 25,
           nac: "Brasil",
-          foto: "img/atletas/valdir.jpeg",
+          foto: "img/atletas/valdir.jpg",
           jogos: 0,
           minutos: "",
           bio: "",

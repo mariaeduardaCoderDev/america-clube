@@ -74,3 +74,10 @@
   flex: 1;
   overflow-y: auto;
 }
+
+/* Item ativo no menu mobile */
+.mnav-btn.mnav-active {
+  background-color: rgba(0, 107, 56, 0.55);
+  color: #ffffff;
+  box-shadow: inset 3px 0 0 #10a35b;
+}

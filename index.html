@@ -188,55 +188,93 @@
             </button>
           </nav>
 
+          <!-- Botão hambúrguer (tablet e celular) -->
+          <button
+            id="menu-toggle"
+            onclick="toggleMobileMenu()"
+            class="xl:hidden flex items-center justify-center w-11 h-11 rounded-xl border border-america-700 bg-america-800/60 hover:bg-america-700 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <i id="menu-toggle-icon" class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+      </div>
+
       <!-- Menu Dropdown Mobile -->
       <div
         id="mobile-menu"
-        class="hidden xl:hidden bg-america-950 border-t border-america-800 px-4 pt-3 pb-6 space-y-1.5"
+        class="hidden xl:hidden bg-america-950 border-t border-america-800 px-4 pt-3 pb-6 space-y-1.5 max-h-[calc(100vh-5rem)] overflow-y-auto"
       >
         <button
           onclick="navigateTo('inicio')"
-          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+          data-mnav="inicio"
+          class="mnav-btn flex items-center gap-3 w-full text-left px-4 py-3.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-america-800 hover:text-white transition"
         >
-          Início
+          <i class="fa-solid fa-house w-5 text-center text-emerald-400"></i>
+          <span>Início</span>
         </button>
         <button
           onclick="navigateTo('historia')"
-          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+          data-mnav="historia"
+          class="mnav-btn flex items-center gap-3 w-full text-left px-4 py-3.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-america-800 hover:text-white transition"
         >
-          História & Conquistas
+          <i class="fa-solid fa-clock-rotate-left w-5 text-center text-emerald-400"></i>
+          <span>História & Conquistas</span>
         </button>
         <button
           onclick="navigateTo('gestao')"
-          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+          data-mnav="gestao"
+          class="mnav-btn flex items-center gap-3 w-full text-left px-4 py-3.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-america-800 hover:text-white transition"
         >
-          Gestão & Diretoria
+          <i class="fa-solid fa-user-tie w-5 text-center text-emerald-400"></i>
+          <span>Gestão & Diretoria</span>
         </button>
         <button
           onclick="navigateTo('modalidades')"
-          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+          data-mnav="modalidades"
+          class="mnav-btn flex items-center gap-3 w-full text-left px-4 py-3.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-america-800 hover:text-white transition"
         >
-          Modalidades & Elencos
+          <i class="fa-solid fa-futbol w-5 text-center text-emerald-400"></i>
+          <span>Modalidades & Elencos</span>
         </button>
-        
         <button
           onclick="navigateTo('noticias')"
-          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+          data-mnav="noticias"
+          class="mnav-btn flex items-center gap-3 w-full text-left px-4 py-3.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-america-800 hover:text-white transition"
         >
-          Notícias & Sala de Imprensa
+          <i class="fa-solid fa-newspaper w-5 text-center text-emerald-400"></i>
+          <span>Notícias & Sala de Imprensa</span>
         </button>
-     
         <button
           onclick="navigateTo('negocios')"
-          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+          data-mnav="negocios"
+          class="mnav-btn flex items-center gap-3 w-full text-left px-4 py-3.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-america-800 hover:text-white transition"
         >
-          Negócios & Patrocinadores
+          <i class="fa-solid fa-handshake w-5 text-center text-emerald-400"></i>
+          <span>Negócios & Patrocinadores</span>
         </button>
         <button
           onclick="navigateTo('contatos')"
-          class="block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-america-800"
+          data-mnav="contatos"
+          class="mnav-btn flex items-center gap-3 w-full text-left px-4 py-3.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-america-800 hover:text-white transition"
         >
-          Contatos & Ouvidoria
+          <i class="fa-solid fa-envelope w-5 text-center text-emerald-400"></i>
+          <span>Contatos & Ouvidoria</span>
         </button>
+        <div class="flex items-center justify-center gap-5 pt-4 mt-2 border-t border-america-800 text-slate-300">
+          <a
+            href="https://www.instagram.com/americaclubemcc?cnvx=MThmOWxnNXdzeWZU"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="openExternalLink(event, this.href, 'Abrindo perfil oficial @americaclubemcc no Instagram')"
+            class="hover:text-emerald-400 transition text-lg"
+            aria-label="Instagram"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
       </div>
     </header>
 

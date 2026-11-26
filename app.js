@@ -157,10 +157,31 @@ function restaurarScroll() {
   } catch (e) {}
 }
 
-function toggleMobileMenu() {
+function toggleMobileMenu(forcar) {
   const menu = document.getElementById("mobile-menu");
-  menu.classList.toggle("hidden");
+  const btn = document.getElementById("menu-toggle");
+  const icon = document.getElementById("menu-toggle-icon");
+  if (!menu || !btn) return;
+  const abrir =
+    typeof forcar === "boolean" ? forcar : menu.classList.contains("hidden");
+  menu.classList.toggle("hidden", !abrir);
+  btn.setAttribute("aria-expanded", String(abrir));
+  btn.setAttribute("aria-label", abrir ? "Fechar menu" : "Abrir menu");
+  icon.className = abrir
+    ? "fa-solid fa-xmark text-lg"
+    : "fa-solid fa-bars text-lg";
 }
+
+// Fecha o menu ao clicar fora, com Esc, ou ao ampliar a tela para o modo desktop
+document.addEventListener("click", (e) => {
+  if (!e.target.closest("header")) toggleMobileMenu(false);
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") toggleMobileMenu(false);
+});
+window.matchMedia("(min-width: 1280px)").addEventListener("change", (e) => {
+  if (e.matches) toggleMobileMenu(false);
+});
 
 // ==================== ROTEAMENTO SPA ====================
 // origem: "usuario" (clique), "inicial" (carregamento) ou "hash" (voltar/avançar)
@@ -182,8 +203,12 @@ function navigateTo(route, param = null, origem = "usuario") {
     }
   });
 
+  document.querySelectorAll(".mnav-btn").forEach((btn) => {
+    btn.classList.toggle("mnav-active", btn.dataset.mnav === route);
+  });
+
   // Fecha menu mobile se aberto
-  document.getElementById("mobile-menu").classList.add("hidden");
+  toggleMobileMenu(false);
 
   // Renderiza a seção correspondente
   const container = document.getElementById("app-content");
